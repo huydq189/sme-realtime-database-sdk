@@ -1,5 +1,5 @@
 export const url_base = 'https://sme-dev.vdc2.com.vn';
-export const apiKey = '';
+export const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZpY2VJRCI6IlNtYXJ0X0J1aWxkaW5nIiwiZXhwIjoxNjI1MjE2OTE1LCJ1c2VySUQiOiJ1c2VyMSJ9.CZmXeB0E0Xc77MMT5fEumUPuBNVRE4zvnbgWEn7Pxyc';
 
 export const uri_create = '/api/core/v1/data/create';
 export const uri_delete = '/api/core/v1/data/delete';
