@@ -2,9 +2,9 @@ import axios from 'axios';
 
 let responseData = { status: 0, data: '' };
 
-export function HttpGet(url: string, headers: any) {
+export function HttpGet(url: string, config: any) {
   axios
-    .get(url, headers)
+    .get(url, config)
     .then(response => {
       responseData.status = response.status;
       responseData.data = response.data;
@@ -17,9 +17,9 @@ export function HttpGet(url: string, headers: any) {
     });
 }
 
-export function HttpPost(url: string, body: any, headers: any): any {
+export function HttpPost(url: string, body: any, config: any): any {
   axios
-    .post(url, body, headers)
+    .post(url, body, config)
     .then(response => {
       responseData.status = response.status;
       responseData.data = response.data;
@@ -32,9 +32,9 @@ export function HttpPost(url: string, body: any, headers: any): any {
     });
 }
 
-export function HttpPatch(url: string, body: any, headers: any) {
+export function HttpPatch(url: string, body: any, config: any) {
   axios
-    .patch(url, body, headers)
+    .patch(url, body, config)
     .then(response => {
       responseData.status = response.status;
       responseData.data = response.data;
@@ -47,9 +47,9 @@ export function HttpPatch(url: string, body: any, headers: any) {
     });
 }
 
-export function HttpDelete(url: string, headers: any) {
+export function HttpDelete(url: string, config: any) {
   axios
-    .delete(url, headers)
+    .delete(url, config)
     .then(response => {
       responseData.status = response.status;
       responseData.data = response.data;
@@ -62,9 +62,9 @@ export function HttpDelete(url: string, headers: any) {
     });
 }
 
-export function HttpPut(url: string, body: any, headers: any) {
+export function HttpPut(url: string, body: any, config: any) {
   axios
-    .put(url, body, headers)
+    .put(url, body, config)
     .then(response => {
       responseData.status = response.status;
       responseData.data = response.data;

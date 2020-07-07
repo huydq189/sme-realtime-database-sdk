@@ -1,63 +1,100 @@
 import axios from 'axios';
+import * as vnpt from './vnpt_realtime_database';
 let responseData = { status: 0, data: '' };
 
-function HttpGet(url: string, headers: any) {
-    axios
-        .get(url, headers)
-        .then(response => {
-            responseData.status = response.status;
-            responseData.data = response.data;
-            return responseData;
-        })
-        .catch(error => {
-            console.log(error);
-            responseData.status = -1;
-            return responseData;
-        });
-}
+// function HttpGet(url: string, headers: any) {
+//     axios
+//         .get(url, headers)
+//         .then(response => {
+//             responseData.status = response.status;
+//             responseData.data = response.data;
+//             return responseData;
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             responseData.status = -1;
+//             return responseData;
+//         });
+// }
 
-function HttpPost(url: string, body: any, headers: any): any {
-    axios
-        .post(url, body, headers)
-        .then(response => {
-            responseData.status = response.status;
-            responseData.data = response.data;
-            return responseData;
-        })
-        .catch(error => {
-            console.log(error);
-            responseData.status = -1;
-            return responseData;
-        });
-}
+// function HttpPost(url: string, body: any, headers: any): any {
+//     axios
+//         .post(url, body, headers)
+//         .then(response => {
+//             responseData.status = response.status;
+//             responseData.data = response.data;
+//             return responseData;
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             responseData.status = -1;
+//             return responseData;
+//         });
+// }
 
 const body = {
-    "bucket_id": "rooms",
+    "bucket_id": "hoangtest",
     "data_item": {
-        "bucket": "rooms",
-        "content": {
-            "channel": "3d1ec8fd-5a72-4760-8629-dce011dae55d",
-            "devices": [
-                "5ddb1f40-cfdb-4a88-9c7c-00fcce9b4a50",
-                "fe27cfac-dc24-422d-ad8a-b7d2b75dd346"
-            ],
-            "name": "Testing created"
+        "assignInfo": {
+            "assignDate": "",
+            "assignee": {
+                "avatar": "",
+                "id": "",
+                "name": "",
+                "phone": "",
+                "workDate": ""
+            },
+            "assigner": {
+                "id": "",
+                "name": "",
+                "phone": ""
+            }
         },
-        "createdByDevice": "Smart_Building",
-        "created_at": "1594019742",
-        "creatingDate": "2020/07/06 14:15:41",
-        "description": "",
-        "id": "22asdasd",
-        "id_incr": 6,
-        "updated_at": "1594019742"
+        "chosenServices": [
+            "service01"
+        ],
+        "created_at": 1593086923,
+        "customerInfo": {
+            "address": "Huy ros",
+            "id": "123456",
+            "name": "fdf",
+            "phone": "0901231234"
+        },
+        "deviceid": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZpY2VJRCI6ImRldmljZTAwMSIsImV4cCI6MTYxMDMzNzgxNywidXNlcklEIjoidXNlcjEifQ.minv50xYpEq8OazvNq3fQfFS9ZXwbgjzGoWy-_rZX3o",
+        "expectedAddress": "Huy ros",
+        "expectedTime": "2020/01/10 15:14:01",
+        "id": "testing",
+        "id_incr": 2,
+        "imageList": [],
+        "note": "",
+        "orderValue": {
+            "details": [
+                {
+                    "charge": "1",
+                    "description": "Bảo trì máy lạnh không chuyên nghiệp",
+                    "id": "service01",
+                    "image": "https://cdn.tgdd.vn/Files/2016/05/01/822919/bao-duong-dieu-hoa-va-nhung-dieu-can-luu-y9-1.jpg",
+                    "name": "Không bảo trì máy lạnh"
+                }
+            ],
+            "sum": ""
+        },
+        "paymentInfo": {
+            "invoice": {},
+            "paymentDate": "",
+            "paymentMethod": "1",
+            "status": "0"
+        },
+        "status": "7",
+        "videoList": ""
     },
-    "device_id": "Smart_Building",
-    "record_id": "22asdasd"
+    "device_id": "hoangtest",
+    "record_id": "testing"
 };
-const headers = {
-    Authorization: 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZpY2VJRCI6IlNtYXJ0X0J1aWxkaW5nIiwiZXhwIjoxNjI1MjE2OTE1LCJ1c2VySUQiOiJ1c2VyMSJ9.CZmXeB0E0Xc77MMT5fEumUPuBNVRE4zvnbgWEn7Pxyc',
-};
-let url: string = 'https://sme-dev.vdc2.com.vn/api/core/v1/data/all_in_bucket/rooms';
-HttpGet(url, headers);
-console.log('okie');
+const config = {
+    headers: {
+        Authorization: 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZpY2VJRCI6ImhvYW5ndGVzdCIsImV4cCI6MTYyMzQ2NjQ3NiwidXNlcklEIjoidXNlcjEifQ.wtC3yxCPw7TdAj6jkCvyOuxzrOtWOlMmmlcBaX9k6L0',
+    }
+}
 
+vnpt.CreateRecord('hoangtest', 'hoangtest', body);

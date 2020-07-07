@@ -24,11 +24,13 @@ import {
 import { HttpPost, HttpDelete, HttpGet, HttpPatch } from './http_client';
 
 export function CreateRecord(bucket: string, record: string, body: any) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_create + '/' + bucket + '/' + record;
-  return HttpPost(url, body, headers);
+  return HttpPost(url, body, config);
 }
 
 export function DeleteRecord(bucket: string, record: string) {
