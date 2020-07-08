@@ -23,126 +23,192 @@ import {
 } from './constant';
 import { HttpPost, HttpDelete, HttpGet, HttpPatch } from './http_client';
 
-export function CreateRecord(bucket: string, record: string, body: any) {
+// 1
+export async function CreateRecord(bucket: string, record: string, body: any) {
+  let responseData = { status: 0, data: '' };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
   let url: string = url_base + uri_create + '/' + bucket + '/' + record;
-  return HttpPost(url, body, config);
+  try {
+    const data = await HttpPost(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-
-export function DeleteRecord(bucket: string, record: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+// 2
+export async function DeleteRecord(bucket: string, record: string) {
+  let responseData = { status: 0, data: '' };
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_delete + '/' + bucket + '/' + record;
-  return HttpDelete(url, headers);
+  try {
+    const data = await HttpDelete(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-
-export function GetDetailRecord(bucket: string, record: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+// 3
+export async function GetDetailRecord(bucket: string, record: string) {
+  let responseData = { status: 0, data: '' };
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_detail_record + '/' + bucket + '/' + record;
-  return HttpGet(url, headers);
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function GetListAndNumberRecordInBucket(bucket: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+// 4
+export async function GetListAndNumberRecordInBucket(bucket: string) {
+  let responseData = { status: 0, data: '' };
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_list_record + '/' + bucket;
-  return HttpGet(url, headers);
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function GetAllRecord(start: number, stop: number) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+// can viet lai
+export function GetAllRecord(params: object) {
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    },
+    params: params
   };
-  let url: string = url_base + uri_all_record + '?' + 'start=' + start + 'stop=' + stop;
-  return HttpGet(url, headers);
+  let url: string = url_base + uri_all_record;
+  return HttpGet(url, config);
 }
 //
 export function GetAllRecordInBucket(bucket: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_all_record_in_bucket + '/' + bucket;
-  return HttpGet(url, headers);
+  return HttpGet(url, config);
 }
 //
 export function UpdateRecord(bucket: string, record: string, body: any) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_update_record + '/' + bucket + '/' + record;
-  return HttpPatch(url, body, headers);
+  return HttpPatch(url, body, config);
 }
 //
 export function SearchData(bucket: string, record: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_search_data + '/' + bucket + '/' + record;
-  return HttpGet(url, headers);
+  return HttpGet(url, config);
 }
 //
 export function GetSomeRecordSpecific(bucket: string, body: any) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_record_specific + '/' + bucket;
-  return HttpPost(url, body, headers);
+  return HttpPost(url, body, config);
 }
 //
 export function UpdateSomeFieldInRecord(bucket: string, record: string, body: any) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_update_field_record + '/' + bucket + '/' + record;
-  return HttpPatch(url, body, headers);
+  return HttpPatch(url, body, config);
 }
 // 
 export function QueryDataByManyCondition(bucket: string, body: any) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_many_condition + '/' + bucket;
-  return HttpPost(url, body, headers);
+  return HttpPost(url, body, config);
 }
 //
 export function QueryDataWithSort(bucket: string, params: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_sort + '/' + bucket + '?' + params;
-  return HttpGet(url, headers);
+  return HttpGet(url, config);
 }
 //
 export function QueryDataWithLimit(bucket: string, params: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_limit + '/' + bucket + '?' + params;
-  return HttpDelete(url, headers);
+  return HttpDelete(url, config);
 }
 //
 export function QueryDataByPaggingAndLimit(bucket: string, params: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_pagging + '/' + bucket + '?' + params;
-  return HttpGet(url, headers);
+  return HttpGet(url, config);
 }
 //
 export function GetDataInSpecificFieldInAllRecordOfBucket(bucket: string, params: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_specific_field_allrecord_bucket + '/' + bucket + '?' + params;
-  return HttpGet(url, headers);
+  return HttpGet(url, config);
 }
 
 export function GetTotalNumberOfRecords(options: any) {
@@ -155,25 +221,31 @@ export function GetTotalNumberOfRecords(options: any) {
 }
 
 export function AddRecordRelationship(bucket: string, record: string, body: any) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_add_relation + '/' + bucket + '/' + record;
-  return HttpPost(url, body, headers);
+  return HttpPost(url, body, config);
 }
 
 export function RemoveRecordRelationShip(bucket: string, record: string, body: any) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_remove_relation + '/' + bucket + '/' + record;
-  return HttpPost(url, body, headers);
+  return HttpPost(url, body, config);
 }
 
 export function UpdateAFieldInRecord(bucket: string, record: string, body: any, params: string) {
-  const headers = {
-    Authorization: 'Bearer ' + apiKey,
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+    }
   };
   let url: string = url_base + uri_data_update_one + '/' + bucket + '/' + record + params;
-  return HttpPatch(url, body, headers);
+  return HttpPatch(url, body, config);
 }

@@ -1,78 +1,21 @@
 import axios from 'axios';
 
-let responseData = { status: 0, data: '' };
-
 export function HttpGet(url: string, config: any) {
-  axios
-    .get(url, config)
-    .then(response => {
-      responseData.status = response.status;
-      responseData.data = response.data;
-      return responseData;
-    })
-    .catch(error => {
-      console.log(error);
-      responseData.status = -1;
-      return responseData;
-    });
+  return axios.get(url, config);
 }
 
 export function HttpPost(url: string, body: any, config: any): any {
-  axios
-    .post(url, body, config)
-    .then(response => {
-      responseData.status = response.status;
-      responseData.data = response.data;
-      return responseData;
-    })
-    .catch(error => {
-      console.log(error);
-      responseData.status = -1;
-      return responseData;
-    });
+  return axios.post(url, body, config);
 }
 
 export function HttpPatch(url: string, body: any, config: any) {
-  axios
-    .patch(url, body, config)
-    .then(response => {
-      responseData.status = response.status;
-      responseData.data = response.data;
-      return responseData;
-    })
-    .catch(error => {
-      console.log(error);
-      responseData.status = -1;
-      return responseData;
-    });
+  return axios.patch(url, body, config);
 }
 
 export function HttpDelete(url: string, config: any) {
-  axios
-    .delete(url, config)
-    .then(response => {
-      responseData.status = response.status;
-      responseData.data = response.data;
-      return responseData;
-    })
-    .catch(error => {
-      console.log(error);
-      responseData.status = -1;
-      return responseData;
-    });
+  return axios.delete(url, config);
 }
 
 export function HttpPut(url: string, body: any, config: any) {
-  axios
-    .put(url, body, config)
-    .then(response => {
-      responseData.status = response.status;
-      responseData.data = response.data;
-      return responseData;
-    })
-    .catch(error => {
-      console.log(error);
-      responseData.status = -1;
-      return responseData;
-    });
+  return axios.put(url, body, config);
 }

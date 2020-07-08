@@ -91,10 +91,33 @@ const body = {
     "device_id": "hoangtest",
     "record_id": "testing"
 };
-const config = {
-    headers: {
-        Authorization: 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZpY2VJRCI6ImhvYW5ndGVzdCIsImV4cCI6MTYyMzQ2NjQ3NiwidXNlcklEIjoidXNlcjEifQ.wtC3yxCPw7TdAj6jkCvyOuxzrOtWOlMmmlcBaX9k6L0',
-    }
-}
+// 
+// vnpt.CreateRecord('hoangtest', 'testtest', body)
+//     .then(result => {
+//         console.log('CreateRecord: ', result);
+//     }).catch(err => {
+//         console.log('error: ', err);
+//     });
 
-vnpt.CreateRecord('hoangtest', 'hoangtest', body);
+vnpt.GetDetailRecord('hoangtest', 'hoangtest')
+    .then(result => {
+        console.log('GetDetailRecord: ', result);
+    }).catch(err => {
+        console.log('error: ', err);
+    });
+
+// vnpt.DeleteRecord('hoangtest', 'testtest')
+//     .then(result => {
+//         console.log('DeleteRecord: ', result);
+//     }).catch(err => {
+//         console.log('error: ', err);
+//     });
+// 
+
+// vnpt.GetListAndNumberRecordInBucket('hoangtest')
+// .then(result=>{
+//     console.log(result);
+// })
+// .catch(err=>{
+    
+// });
