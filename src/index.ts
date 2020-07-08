@@ -113,8 +113,6 @@ const body = {
 //     })
 //     .catch(err => {
 //         console.log(err);
-//     });
-
 // vnpt.SearchData('hoangtest', { field: 'customerInfo.id', pattern: '123456' })
 //     .then(result => {
 //         console.log(result.data);
@@ -122,6 +120,8 @@ const body = {
 //     .catch(err => {
 //         console.log(err);
 //     });
+//     });
+
 
 // const recordspecific = {
 // 	"list":"record1,hoangtest,record4"
@@ -188,15 +188,15 @@ const body = {
 //     });
 // vnpt.GetDataInSpecificFieldInAllRecordOfBucket('hoangtest', { field: 'assignInfo' })
 //     .then(result => {
+//         console.log(result);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+// vnpt.GetTotalNumberOfRecords('user1')
+//     .then(result => {
 //         console.log(result.data);
 //     })
 //     .catch(err => {
 //         console.log(err);
 //     });
-vnpt.GetTotalNumberOfRecords('user1')
-    .then(result => {
-        console.log(result.data);
-    })
-    .catch(err => {
-        console.log(err);
-    });

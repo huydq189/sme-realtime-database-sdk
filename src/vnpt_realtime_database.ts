@@ -22,10 +22,13 @@ import {
   uri_data_update_one
 } from './constant';
 import { HttpPost, HttpDelete, HttpGet, HttpPatch } from './http_client';
-
+type responseData = {
+  status: number,
+  data: any
+}
 // 1
 export async function CreateRecord(bucket: string, record: string, body: any) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -44,7 +47,7 @@ export async function CreateRecord(bucket: string, record: string, body: any) {
 }
 // 2
 export async function DeleteRecord(bucket: string, record: string) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -63,7 +66,7 @@ export async function DeleteRecord(bucket: string, record: string) {
 }
 // 3
 export async function GetDetailRecord(bucket: string, record: string) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -82,7 +85,7 @@ export async function GetDetailRecord(bucket: string, record: string) {
 }
 // 4
 export async function GetListAndNumberRecordInBucket(bucket: string) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -101,7 +104,7 @@ export async function GetListAndNumberRecordInBucket(bucket: string) {
 }
 // 5
 export async function GetAllRecord(userid: string, params: object) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -122,7 +125,7 @@ export async function GetAllRecord(userid: string, params: object) {
 }
 // 6
 export async function GetAllRecordInBucket(bucket: string) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -141,7 +144,7 @@ export async function GetAllRecordInBucket(bucket: string) {
 }
 // 7
 export async function UpdateRecord(bucket: string, record: string, body: any) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -160,7 +163,7 @@ export async function UpdateRecord(bucket: string, record: string, body: any) {
 }
 // 8
 export async function SearchData(bucket: string, params: object) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -180,7 +183,7 @@ export async function SearchData(bucket: string, params: object) {
 }
 // 9
 export async function GetSomeRecordSpecific(bucket: string, body: any) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -199,7 +202,7 @@ export async function GetSomeRecordSpecific(bucket: string, body: any) {
 }
 // 10
 export async function UpdateSomeFieldInRecord(bucket: string, record: string, body: any) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -218,7 +221,7 @@ export async function UpdateSomeFieldInRecord(bucket: string, record: string, bo
 }
 // 11
 export async function QueryDataByManyCondition(bucket: string, body: any) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -237,7 +240,7 @@ export async function QueryDataByManyCondition(bucket: string, body: any) {
 }
 // 12
 export async function QueryDataWithSort(bucket: string, params: object) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -257,7 +260,7 @@ export async function QueryDataWithSort(bucket: string, params: object) {
 }
 // 14
 export async function QueryDataWithLimit(bucket: string, params: object) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -277,7 +280,7 @@ export async function QueryDataWithLimit(bucket: string, params: object) {
 }
 // 15
 export async function QueryDataByPaggingAndLimit(bucket: string, params: object) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -297,7 +300,7 @@ export async function QueryDataByPaggingAndLimit(bucket: string, params: object)
 }
 // 16
 export async function GetDataInSpecificFieldInAllRecordOfBucket(bucket: string, params: object) {
-  let responseData = { status: 0, data: new Object() };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
