@@ -18,7 +18,7 @@ export const uri_data_number_record = '/api/core/v1/data/total';
 export const uri_data_add_relation = '/api/core/v1/data/relation/add';
 export const uri_data_remove_relation = '/api/core/v1/data/relation/delete';
 export const uri_data_update_one = '/api/core/v1/data/update_one';
-export const uri_record_specific = '/api/core/v1/data/retrive_many';
+export const uri_record_specific = '/api/core/v1/data/retrieve_many';
 export const uri_update_record = '/api/core/v1/update_many';
-export const uri_update_field_record = '/api/core/v1/update_field';
+export const uri_update_field_record = '/api/core/v1/data/update_field';
 

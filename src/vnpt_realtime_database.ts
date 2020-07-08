@@ -25,7 +25,7 @@ import { HttpPost, HttpDelete, HttpGet, HttpPatch } from './http_client';
 
 // 1
 export async function CreateRecord(bucket: string, record: string, body: any) {
-  let responseData = { status: 0, data: '' };
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -44,7 +44,7 @@ export async function CreateRecord(bucket: string, record: string, body: any) {
 }
 // 2
 export async function DeleteRecord(bucket: string, record: string) {
-  let responseData = { status: 0, data: '' };
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -63,7 +63,7 @@ export async function DeleteRecord(bucket: string, record: string) {
 }
 // 3
 export async function GetDetailRecord(bucket: string, record: string) {
-  let responseData = { status: 0, data: '' };
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -82,7 +82,7 @@ export async function GetDetailRecord(bucket: string, record: string) {
 }
 // 4
 export async function GetListAndNumberRecordInBucket(bucket: string) {
-  let responseData = { status: 0, data: '' };
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -99,153 +99,297 @@ export async function GetListAndNumberRecordInBucket(bucket: string) {
   }
   return responseData;
 }
-// can viet lai
-export function GetAllRecord(params: object) {
+// 5
+export async function GetAllRecord(userid: string, params: object) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
+      userid: userid
     },
     params: params
   };
   let url: string = url_base + uri_all_record;
-  return HttpGet(url, config);
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function GetAllRecordInBucket(bucket: string) {
+// 6
+export async function GetAllRecordInBucket(bucket: string) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
   let url: string = url_base + uri_all_record_in_bucket + '/' + bucket;
-  return HttpGet(url, config);
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function UpdateRecord(bucket: string, record: string, body: any) {
+// 7
+export async function UpdateRecord(bucket: string, record: string, body: any) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
   let url: string = url_base + uri_update_record + '/' + bucket + '/' + record;
-  return HttpPatch(url, body, config);
+  try {
+    const data = await HttpPatch(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function SearchData(bucket: string, record: string) {
+// 8
+export async function SearchData(bucket: string, params: object) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
-    }
+    },
+    params: params
   };
-  let url: string = url_base + uri_search_data + '/' + bucket + '/' + record;
-  return HttpGet(url, config);
+  let url: string = url_base + uri_search_data + '/' + bucket;
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function GetSomeRecordSpecific(bucket: string, body: any) {
+// 9
+export async function GetSomeRecordSpecific(bucket: string, body: any) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
   let url: string = url_base + uri_record_specific + '/' + bucket;
-  return HttpPost(url, body, config);
+  try {
+    const data = await HttpPost(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function UpdateSomeFieldInRecord(bucket: string, record: string, body: any) {
+// 10
+export async function UpdateSomeFieldInRecord(bucket: string, record: string, body: any) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
   let url: string = url_base + uri_update_field_record + '/' + bucket + '/' + record;
-  return HttpPatch(url, body, config);
+  try {
+    const data = await HttpPatch(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-// 
-export function QueryDataByManyCondition(bucket: string, body: any) {
+// 11
+export async function QueryDataByManyCondition(bucket: string, body: any) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
   let url: string = url_base + uri_data_many_condition + '/' + bucket;
-  return HttpPost(url, body, config);
+  try {
+    const data = await HttpPost(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function QueryDataWithSort(bucket: string, params: string) {
+// 12
+export async function QueryDataWithSort(bucket: string, params: object) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
-    }
+    },
+    params: params
   };
   let url: string = url_base + uri_data_sort + '/' + bucket + '?' + params;
-  return HttpGet(url, config);
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function QueryDataWithLimit(bucket: string, params: string) {
+// 14
+export async function QueryDataWithLimit(bucket: string, params: object) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
-    }
+    },
+    params: params
   };
-  let url: string = url_base + uri_data_limit + '/' + bucket + '?' + params;
-  return HttpDelete(url, config);
+  let url: string = url_base + uri_data_limit + '/' + bucket;
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function QueryDataByPaggingAndLimit(bucket: string, params: string) {
+// 15
+export async function QueryDataByPaggingAndLimit(bucket: string, params: object) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
-    }
+    },
+    params: params
   };
-  let url: string = url_base + uri_data_pagging + '/' + bucket + '?' + params;
-  return HttpGet(url, config);
+  let url: string = url_base + uri_data_pagging + '/' + bucket;
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-//
-export function GetDataInSpecificFieldInAllRecordOfBucket(bucket: string, params: string) {
+// 16
+export async function GetDataInSpecificFieldInAllRecordOfBucket(bucket: string, params: object) {
+  let responseData = { status: 0, data: new Object() };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
+    },
+    params: params
+  };
+  let url: string = url_base + uri_data_specific_field_allrecord_bucket + '/' + bucket;
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
+}
+//17
+export async function GetTotalNumberOfRecords(userid: string) {
+  let responseData = { status: 0, data: new Object };
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + apiKey,
+      userid: userid
     }
   };
-  let url: string = url_base + uri_data_specific_field_allrecord_bucket + '/' + bucket + '?' + params;
-  return HttpGet(url, config);
-}
-
-export function GetTotalNumberOfRecords(options: any) {
-  let header = {
-    Authorization: 'Bearer ' + apiKey,
-  };
-  const headers = { ...header, ...options };
   let url: string = url_base + uri_data_number_record;
-  return HttpDelete(url, headers);
+  try {
+    const data = await HttpGet(url, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-
-export function AddRecordRelationship(bucket: string, record: string, body: any) {
+//18
+export async function AddRecordRelationship(bucket: string, record: string, body: any) {
+  let responseData = { status: 0, data: new Object };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
   let url: string = url_base + uri_data_add_relation + '/' + bucket + '/' + record;
-  return HttpPost(url, body, config);
+  try {
+    const data = await HttpPost(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-
-export function RemoveRecordRelationShip(bucket: string, record: string, body: any) {
+//19
+export async function RemoveRecordRelationShip(bucket: string, record: string, body: any) {
+  let responseData = { status: 0, data: new Object };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
-  let url: string = url_base + uri_data_remove_relation + '/' + bucket + '/' + record;
-  return HttpPost(url, body, config);
+  let url: string = url_base + uri_data_add_relation + '/' + bucket + '/' + record;
+  try {
+    const data = await HttpPost(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
-
-export function UpdateAFieldInRecord(bucket: string, record: string, body: any, params: string) {
+//20 
+export async function UpdateAFieldInRecord(bucket: string, record: string, body: any, params: object) {
+  let responseData = { status: 0, data: new Object };
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
-    }
+    },
+    params: params
   };
-  let url: string = url_base + uri_data_update_one + '/' + bucket + '/' + record + params;
-  return HttpPatch(url, body, config);
+  let url: string = url_base + uri_data_update_one + '/' + bucket + '/' + record;
+  try {
+    const data = await HttpPatch(url, body, config);
+    responseData.status = data.status;
+    responseData.data = data.data;
+  } catch (err) {
+    responseData.status = -1;
+    throw err;
+  }
+  return responseData;
 }
