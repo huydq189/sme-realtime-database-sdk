@@ -320,7 +320,7 @@ export async function GetDataInSpecificFieldInAllRecordOfBucket(bucket: string, 
 }
 //17
 export async function GetTotalNumberOfRecords(userid: string) {
-  let responseData = { status: 0, data: new Object };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -340,7 +340,7 @@ export async function GetTotalNumberOfRecords(userid: string) {
 }
 //18
 export async function AddRecordRelationship(bucket: string, record: string, body: any) {
-  let responseData = { status: 0, data: new Object };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
@@ -359,13 +359,13 @@ export async function AddRecordRelationship(bucket: string, record: string, body
 }
 //19
 export async function RemoveRecordRelationShip(bucket: string, record: string, body: any) {
-  let responseData = { status: 0, data: new Object };
+  let responseData = <responseData>{};
   const config = {
     headers: {
       Authorization: 'Bearer ' + apiKey,
     }
   };
-  let url: string = url_base + uri_data_add_relation + '/' + bucket + '/' + record;
+  let url: string = url_base + uri_data_remove_relation + '/' + bucket + '/' + record;
   try {
     const data = await HttpPost(url, body, config);
     responseData.status = data.status;
@@ -377,15 +377,15 @@ export async function RemoveRecordRelationShip(bucket: string, record: string, b
   return responseData;
 }
 //20 
-export async function UpdateAFieldInRecord(bucket: string, record: string, body: any, params: object) {
-  let responseData = { status: 0, data: new Object };
+export async function UpdateAFieldInRecord(bucket: string, record: string, body: any, uri: string) {
+  let responseData = <responseData>{};
   const config = {
     headers: {
-      Authorization: 'Bearer ' + apiKey,
-    },
-    params: params
+      Authorization: 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZpY2VJRCI6InNlY19kdW5neG9hIiwiZXhwIjoxNjI0MjE3MzkyLCJ1c2VySUQiOiJ1c2VyMyJ9.r45ApAPhVOzGtEWBpBa6dN0Dwu7DXgU_UOr7EwNpCio',
+      'Content-Type': 'text/plain'
+    }
   };
-  let url: string = url_base + uri_data_update_one + '/' + bucket + '/' + record;
+  let url: string = url_base + uri_data_update_one + '/' + bucket + '/' + record + '/' + uri;
   try {
     const data = await HttpPatch(url, body, config);
     responseData.status = data.status;
@@ -396,3 +396,21 @@ export async function UpdateAFieldInRecord(bucket: string, record: string, body:
   }
   return responseData;
 }
+
+// var a = new Data();
+// a.child('abd').child().
+
+// class Data {
+
+//   String url = '';
+
+//   Data child(ref: String) {
+//     url = url + ref;
+//     return this;
+//   }
+
+//   update(value: JSON) {
+    
+//   }
+
+// }

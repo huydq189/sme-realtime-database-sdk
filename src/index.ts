@@ -200,3 +200,33 @@ const body = {
 //     .catch(err => {
 //         console.log(err);
 //     });
+// const addrelatoin = {
+//     "parent_bucket_id": "vietcombank",
+//     "parent_record_id": "Nuut"
+// }
+// vnpt.AddRecordRelationship('facebook', 'record1', addrelatoin)
+//     .then(result => {
+//         console.log(result.data);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+// const removerelatoin = {
+//     "parent_bucket_id": "vietcombank",
+//     "parent_record_id": "Nuut"
+// }
+// vnpt.RemoveRecordRelationShip('facebook', 'record1', removerelatoin)
+//     .then(result => {
+//         console.log(result.data);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+const data = "testtest";
+vnpt.UpdateAFieldInRecord('facebook', 'record1', data, 'content/customerDirectContact/address')
+    .then(result => {
+        console.log(result.data);
+    })
+    .catch(err => {
+        console.log(err);
+    });
